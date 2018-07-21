@@ -32,15 +32,14 @@ void draw() {
   translate(0, 0);
   text("angle: " + angle, 10, 10);
   PVector v1 = tracker.getLerpedPos();
-  fill(255, 255, 10, 200);
+  fill(255, 255, 0, 200);
   noStroke();
-  ellipse(v1.x, v1.y, 40, 40);
-  //noStroke();
-  rect(v1.x-(squareSize/2), v1.y-(squareSize/2), squareSize, squareSize);
-  fill(255, 255, 100, 200);
-  translate(v1.x, v1.y-(hypotenuse/2));
+  translate(v1.x, v1.y);
+  ellipse(0, 0, 40, 40);
   rotate(radians(angle));
-  rect(0, 0, squareSize, squareSize);
+  rect(-(squareSize/2), -(squareSize/2), squareSize, squareSize);
+  rotate(radians(angle));
+  rect(-(squareSize/2), -(squareSize/2), squareSize, squareSize);
   fill(255, 255, 0, 200);
   angle = angle + 1;
 }
