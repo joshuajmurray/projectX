@@ -11,31 +11,32 @@ import org.openkinect.processing.*;
 // The kinect stuff is happening in another class
 KinectTracker tracker;
 Kinect kinect;
+PImage img;
 
 
 void setup() {
   size(640, 520);
   kinect = new Kinect(this);
   tracker = new KinectTracker();
+  img = loadImage("sisters.jpg");
 }
   //sun info---
   float squareSize = 35;
+  float orbSize = squareSize * 1.1;
   int angle = 45;
   float hypotenuse = sqrt(pow(squareSize,2) +  pow(squareSize,2));
 
 void draw() {
-  background(255);
-
+  translate(0, 0);
+  background(img);
   tracker.track();  // Run the tracking analysis
   tracker.display();  // Show the image
 
-  translate(0, 0);
-  text("angle: " + angle, 10, 10);
   PVector v1 = tracker.getLerpedPos();
-  fill(255, 255, 0, 200);
+  fill(255, 255, 0, 200);//yellow
   noStroke();
   translate(v1.x, v1.y);
-  ellipse(0, 0, 40, 40);
+  ellipse(0, 0, orbSize, orbSize);
   rotate(radians(angle));
   rect(-(squareSize/2), -(squareSize/2), squareSize, squareSize);
   rotate(radians(angle));
