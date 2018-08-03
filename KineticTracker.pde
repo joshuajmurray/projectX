@@ -7,38 +7,31 @@
 
 class KinectTracker {
 
-  // Depth threshold
-  int threshold = 550;
+  float minThreshold = 200;
+  float maxThreshold = 500;
+  float rawDepth = 0;
 
-  // Raw location
-  PVector loc;
+  PVector loc;// Raw location
+  PVector interpolatedLocation;// Interpolated location
 
-  // Interpolated location
-  PVector lerpedLoc;
-
-  // Depth data
-  int[] depth;
+  int[] depth;// Depth data
   
-  // What we'll show the user
   PImage display;
+  PImage dayBackGround;
+  PImage nightBackGround;
    
   KinectTracker() {
-    // This is an awkard use of a global variable here
-    // But doing it this way for simplicity
     kinect.initDepth();
     kinect.enableMirror(true);
-    // Make a blank image
-    display = createImage(kinect.width, kinect.height, RGB);
-    // Set up the vectors
+    display = createImage(kinect.width, kinect.height, RGB);// Make a blank image
+    dayBackGround = loadImage("sisters.jpg");
     loc = new PVector(0, 0);
-    lerpedLoc = new PVector(0, 0);
+    interpolatedLocation = new PVector(0, 0);
   }
 
   void track() {
-    // Get the raw depth as array of integers
     depth = kinect.getRawDepth();
 
-    // Being overly cautious here
     if (depth == null) return;
 
     float sumX = 0;
@@ -47,31 +40,26 @@ class KinectTracker {
 
     for (int x = 0; x < kinect.width; x++) {
       for (int y = 0; y < kinect.height; y++) {
-        
-        int offset =  x + y*kinect.width;
-        // Grabbing the raw depth
-        int rawDepth = depth[offset];
-
-        // Testing against threshold
-        if (rawDepth < threshold) {
+        rawDepth = depth[x + y*kinect.width];
+        if (rawDepth < maxThreshold && rawDepth > minThreshold) {
           sumX += x;
           sumY += y;
           count++;
         }
       }
     }
-    // As long as we found something
-    if (count != 0) {
+    
+    if (count != 0) {// As long as we found something
       loc = new PVector(sumX/count, sumY/count);
     }
 
     // Interpolating the location, doing it arbitrarily for now
-    lerpedLoc.x = PApplet.lerp(lerpedLoc.x, loc.x, 0.3f);
-    lerpedLoc.y = PApplet.lerp(lerpedLoc.y, loc.y, 0.3f);
+    interpolatedLocation.x = PApplet.lerp(interpolatedLocation.x, loc.x, 0.3f);
+    interpolatedLocation.y = PApplet.lerp(interpolatedLocation.y, loc.y, 0.3f);
   }
 
-  PVector getLerpedPos() {
-    return lerpedLoc;
+  PVector getInterpolatedPosition() {
+    return interpolatedLocation;
   }
 
   PVector getPos() {
@@ -84,22 +72,26 @@ class KinectTracker {
     // Being overly cautious here
     if (depth == null || img == null) return;
 
-    // Going to rewrite the depth image to show which pixels are in threshold
-    // A lot of this is redundant, but this is just for demonstration purposes
     display.loadPixels();
     for (int x = 0; x < kinect.width; x++) {
       for (int y = 0; y < kinect.height; y++) {
 
         int offset = x + y * kinect.width;
-        // Raw depth
-        int rawDepth = depth[offset];
+        int rawDepth = depth[offset];// Raw depth
         int pix = x + y * display.width;
-        if (rawDepth < threshold && rawDepth > 0) {
-          // A red color instead
-          display.pixels[pix] = color(255, 50, 50);
+        
+        if (rawDepth < maxThreshold && rawDepth > minThreshold) {
+          display.pixels[pix] = color(255, 50, 50);// A red color instead
         } else {
           display.pixels[pix] = img.pixels[offset];
         }
+        
+        if (rawDepth > maxThreshold) {//set the pixle as transparent
+          //display.pixels[pix] = color(0,0,0,0);
+          PImage temp = dayBackGround.get(x,y,1,1);
+          display.set(x,y,temp);
+        }
+        
       }
     }
     display.updatePixels();
@@ -108,11 +100,20 @@ class KinectTracker {
     image(display, 0, 0);
   }
 
-  int getThreshold() {
-    return threshold;
+   float getMinThreshold() {
+    return minThreshold;
   }
 
-  void setThreshold(int t) {
-    threshold =  t;
+  void setMinThreshold(float t) {
+    minThreshold =  t;
   }
+
+ float getMaxThreshold() {
+    return maxThreshold;
+  }
+
+  void setMaxThreshold(float t) {
+    maxThreshold =  t;
+  }
+
 }

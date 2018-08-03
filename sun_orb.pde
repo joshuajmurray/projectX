@@ -11,14 +11,14 @@ import org.openkinect.processing.*;
 // The kinect stuff is happening in another class
 KinectTracker tracker;
 Kinect kinect;
-PImage img;
 
 
 void setup() {
   size(640, 520);
   kinect = new Kinect(this);
   tracker = new KinectTracker();
-  img = loadImage("sisters.jpg");
+  tracker.setMinThreshold(800);
+  tracker.setMaxThreshold(900);
 }
   //sun info---
   float squareSize = 35;
@@ -28,11 +28,11 @@ void setup() {
 
 void draw() {
   translate(0, 0);
-  background(img);
+  background(255);
   tracker.track();  // Run the tracking analysis
   tracker.display();  // Show the image
 
-  PVector v1 = tracker.getLerpedPos();
+  PVector v1 = tracker.getInterpolatedPosition();
   fill(255, 255, 0, 200);//yellow
   noStroke();
   translate(v1.x, v1.y);
