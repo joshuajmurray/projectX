@@ -17,16 +17,23 @@ class KinectTracker {
   int[] depth;// Depth data
   
   PImage display;
-  PImage dayBackGround;
-  PImage nightBackGround;
+  PImage currentBackground;
    
   KinectTracker() {
     kinect.initDepth();
     kinect.enableMirror(true);
     display = createImage(kinect.width, kinect.height, RGB);// Make a blank image
-    dayBackGround = loadImage("sisters.jpg");
     loc = new PVector(0, 0);
     interpolatedLocation = new PVector(0, 0);
+  }
+
+  KinectTracker(String pic) {
+    kinect.initDepth();
+    kinect.enableMirror(true);
+    display = createImage(kinect.width, kinect.height, RGB);// Make a blank image
+    loc = new PVector(0, 0);
+    interpolatedLocation = new PVector(0, 0);
+    currentBackground = loadImage(pic);
   }
 
   void track() {
@@ -70,7 +77,7 @@ class KinectTracker {
     PImage img = kinect.getDepthImage();
 
     // Being overly cautious here
-    if (depth == null || img == null) return;
+    //if (depth == null || img == null) return;
 
     display.loadPixels();
     for (int x = 0; x < kinect.width; x++) {
@@ -87,17 +94,15 @@ class KinectTracker {
         }
         
         if (rawDepth > maxThreshold) {//set the pixle as transparent
-          //display.pixels[pix] = color(0,0,0,0);
-          PImage temp = dayBackGround.get(x,y,1,1);
+          PImage temp = currentBackground.get(x,y,1,1);
           display.set(x,y,temp);
         }
         
       }
     }
-    display.updatePixels();
 
-    // Draw the image
-    image(display, 0, 0);
+    display.updatePixels();
+    image(display, 0, 0);// Draw the image
   }
 
    float getMinThreshold() {
@@ -114,6 +119,10 @@ class KinectTracker {
 
   void setMaxThreshold(float t) {
     maxThreshold =  t;
+  }
+  
+  void setBackGroundImage(String pic) {
+    currentBackground = loadImage(pic);
   }
 
 }

@@ -17,8 +17,10 @@ void setup() {
   size(640, 520);
   kinect = new Kinect(this);
   tracker = new KinectTracker();
-  tracker.setMinThreshold(800);
+  //tracker = new KinectTracker("sisters.jpg");
   tracker.setMaxThreshold(900);
+  //tracker.setBackGroundImage("sisters.jpg");
+  tracker.setBackGroundImage("milkyway.jpg");
 }
   //sun info---
   float squareSize = 35;
