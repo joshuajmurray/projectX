@@ -18,6 +18,7 @@ void setup() {
   kinect = new Kinect(this);
   tracker = new KinectTracker();
   //tracker = new KinectTracker("sisters.jpg");
+  tracker.setMinThreshold(800);
   tracker.setMaxThreshold(900);
   //tracker.setBackGroundImage("sisters.jpg");
   tracker.setBackGroundImage("milkyway.jpg");
