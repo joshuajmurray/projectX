@@ -1,39 +1,34 @@
-// Daniel Shiffman
-// Tracking the average location beyond a given depth threshold
-// Thanks to Dan O'Sullivan
-
-// https://github.com/shiffman/OpenKinect-for-Processing
-// http://shiffman.net/p5/kinect/
-
 class KinectTracker {
 
   float minThreshold = 200;
   float maxThreshold = 500;
   float rawDepth = 0;
+  boolean nightTime = false;
+  String dayImage;
+  String nightImage;
+  int dayStart;
+  int dayEnd;
 
-  PVector loc;// Raw location
-  PVector interpolatedLocation;// Interpolated location
+  PVector loc;//Raw location
+  PVector interpolatedLocation;//Interpolated location
 
-  int[] depth;// Depth data
+  int[] depth;//Depth data
   
   PImage display;
   PImage currentBackground;
-   
-  KinectTracker() {
-    kinect.initDepth();
-    kinect.enableMirror(true);
-    display = createImage(kinect.width, kinect.height, RGB);// Make a blank image
-    loc = new PVector(0, 0);
-    interpolatedLocation = new PVector(0, 0);
-  }
 
-  KinectTracker(String pic) {
+  KinectTracker(String day, String night, int hour, int start, int end) {
     kinect.initDepth();
     kinect.enableMirror(true);
     display = createImage(kinect.width, kinect.height, RGB);// Make a blank image
     loc = new PVector(0, 0);
     interpolatedLocation = new PVector(0, 0);
-    currentBackground = loadImage(pic);
+    dayImage = day;
+    nightImage = night;
+    dayStart = start;
+    dayEnd = end;
+    isNightTime(hour);
+    setBackGroundImage(nightTime);
   }
 
   void track() {
@@ -73,11 +68,10 @@ class KinectTracker {
     return loc;
   }
 
-  void display() {
+  void display(int hour) {
     PImage img = kinect.getDepthImage();
-
-    // Being overly cautious here
-    //if (depth == null || img == null) return;
+    isNightTime(hour);
+    setBackGroundImage(nightTime);
 
     display.loadPixels();
     for (int x = 0; x < kinect.width; x++) {
@@ -105,7 +99,7 @@ class KinectTracker {
     image(display, 0, 0);// Draw the image
   }
 
-   float getMinThreshold() {
+  float getMinThreshold() {
     return minThreshold;
   }
 
@@ -113,7 +107,7 @@ class KinectTracker {
     minThreshold =  t;
   }
 
- float getMaxThreshold() {
+  float getMaxThreshold() {
     return maxThreshold;
   }
 
@@ -121,8 +115,20 @@ class KinectTracker {
     maxThreshold =  t;
   }
   
-  void setBackGroundImage(String pic) {
-    currentBackground = loadImage(pic);
+  void setBackGroundImage(boolean night) {
+    if(night) {
+      currentBackground = loadImage(nightImage);
+    } else {
+      currentBackground = loadImage(dayImage);
+    }
+  }
+  
+  void isNightTime(int hour) {
+    if(hour > dayStart && hour < dayEnd) {
+      nightTime = false;
+    } else {
+      nightTime = true;
+    }
   }
 
 }
