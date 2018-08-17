@@ -1,11 +1,12 @@
-# Project X
+# Exhibit X
 
 This is an interactive art exhibit using a Microsoft Kinect V1 (model 1414) and various Processing libraries.
 
-## Setup
+## Getting Started
 
-Install Processing 3.3.7
-Install openkinect_processing & SimpleOpenNI libraries
-Links to follow.. 
+* [Install Processing 3.3.7](https://processing.org/download/Install) - The dev environment
+* [Install OpenKinect](https://github.com/shiffman/OpenKinect-for-Processing/releases) - Kinect Library
+* [General Kinect resource](https://shiffman.net/p5/kinect/) - Excellent Processing/Kinect resource
 
-(c) 2018 Joshua Murray. All rights reserved.
+(c)Getting Started Joshua Murray. All rights reserved.
+Install 
