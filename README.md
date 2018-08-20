@@ -1,6 +1,6 @@
 # Exhibit X
 
-This is an interactive art exhibit using a Microsoft Kinect V1 (model 1414) and various Processing libraries.
+This is an interactive art exhibit using a Microsoft Kinect V1 (model 1414) and various Processing libraries. The Kinect V2 can be used as well with some software changes. Refer to Kinect resourse link for more info on using a Kinect V2.
 
 ## Getting Started
 
