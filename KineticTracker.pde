@@ -116,19 +116,11 @@ class KinectTracker {
   }
   
   void setBackGroundImage(boolean night) {
-    if(night) {
-      currentBackground = loadImage(nightImage);
-    } else {
-      currentBackground = loadImage(dayImage);
-    }
+    currentBackground = night ? loadImage(nightImage) : loadImage(dayImage);
   }
   
   void isNightTime(int hour) {
-    if(hour > dayStart && hour < dayEnd) {
-      nightTime = false;
-    } else {
-      nightTime = true;
-    }
+    nightTime = (hour > dayStart && hour < dayEnd) ? false : true;
   }
 
 }

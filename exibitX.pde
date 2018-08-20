@@ -3,7 +3,7 @@ import org.openkinect.processing.*;
 
 private static final int DAYSTART = 6;
 private static final int DAYEND = 20;
-  
+
 KinectTracker tracker;
 Kinect kinect;
 SkyObject celestialBody;
