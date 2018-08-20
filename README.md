@@ -16,5 +16,4 @@ This is an interactive art exhibit using a Microsoft Kinect V1 (model 1414) and 
 * [Video Card](https://www.cdw.com/product/NVIDIA-Quadro-P400-graphics-card-Quadro-P400-2-GB/4790563?cm_cat=GoogleBase&cm_ite=4790563&cm_pla=NA-NA-LVO_VA&cm_ven=acquirgy&ef_id=WgOl-wAABIxL1Ej0:20180817235336:s&gclid=Cj0KCQjw5NnbBRDaARIsAJP-YR8RTDJnsLOacTS74mMiNSPvdz5w03bpW7gIfCl-qcAm5U3J5aZvAcUaAmeqEALw_wcB&s_kwcid=AL!4223!3!250795577190!!!g!341625912417!) - TBD
 * [Projector](https://www.bestbuy.com/site/miroir-element-dlp-projector-black/5987900.p?skuId=5987900&cmp=RMX&extStoreId=863&ref=212&loc=1&gclid=Cj0KCQjw5NnbBRDaARIsAJP-YR_T8aKKvdyoKOb9-QsgCYmAtOPFgMaRQTtuIlKMxUTVe1SLRS8267caApAHEALw_wcB&gclsrc=aw.ds) - TBD
 
-(c)Getting Started Joshua Murray. All rights reserved.
-Install 
+(c)Joshua Murray. All rights reserved. 
