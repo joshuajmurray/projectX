@@ -12,7 +12,7 @@ This is an interactive art exhibit using a Microsoft Kinect V1 (model 1414) and 
 
 ## Hardware
 * [Microsoft Kinect 1 or 2](https://developer.microsoft.com/en-us/windows/kinect) - General Microsoft Kinect Resource
-## Kinect v1 Requirements
+## Kinect v1 Requirements (Thanks Dan Shiffman)
 - Kinect v1
 - Kinect v1 power adapter
 
