@@ -12,6 +12,7 @@ This is an interactive art exhibit using a Microsoft Kinect V1 (model 1414) and 
 
 ## Hardware
 * [Microsoft Kinect 1 or 2](https://developer.microsoft.com/en-us/windows/kinect) - General Microsoft Kinect Resource
+
 		Windows.
 		Use Zadig to install the libusbK driver for each device you wish to use. This includes installing the libusbK for all the kinect v1 drivers listed on Zadig GUI.
 * [Windows Mini PC](https://www.newegg.com/Product/Product.aspx?Item=N82E16856164017&ignorebbr=1&nm_mc=KNC-GoogleAdwords-PC&cm_mmc=KNC-GoogleAdwords-PC-_-pla-_-Barebone+Systems+-+Mini+%2F+Booksize-_-N82E16856164017&gclid=Cj0KCQjw5NnbBRDaARIsAJP-YR__5IwZd6i4qqw7KZZVwvPBtXvHglpcWuZB6liRJ5UqBtGYuP203K8aAolKEALw_wcB&gclsrc=aw.ds) -TBD
