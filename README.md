@@ -4,8 +4,8 @@ This is an interactive art exhibit using a Microsoft Kinect V1 (model 1414) and 
 	
 ## Getting Started
 
-* [Install Processing 3.3.7](https://processing.org/download/Install) - The dev environment
-* [Install OpenKinect](https://github.com/shiffman/OpenKinect-for-Processing/releases/download/1.0/openkinect_processing.zip) - Kinect Library
+* [Install Processing 3.4](https://processing.org/download) - The dev environment
+* [Install OpenKinect](https://github.com/shiffman/OpenKinect-for-Processing) - Kinect Library
 
 		Unzip the OpenKinect library to \Documents\Processing\libraries
 * [Shiffman Kinect Resource](https://shiffman.net/p5/kinect/) - Dan Shiffman; excellent Processing/Kinect resource
